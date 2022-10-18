@@ -1,6 +1,5 @@
-"""Flask module."""
+"""Import module."""
 from flask import Flask
-"""Redis module."""
 from redis import Redis
 
 app = Flask(__name__)
@@ -8,6 +7,7 @@ redis = Redis(host="redis")
 
 @app.route("/")
 def hello():
+    """Hello function"""
     visits = redis.incr('counter')
     html = "<h3>Hello World!</h3>" \
            "<b>Visits:</b> {visits}" \
