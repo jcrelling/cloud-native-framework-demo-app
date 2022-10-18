@@ -8,6 +8,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Instaling Python lint
         run: pip install pylint
+      - name: Instaling app requirements
+        run: pip install requirements.txt
       - name: Executing Python lint
         run: pylint app.py
     
@@ -19,4 +21,4 @@ jobs:
       - name: Build the stack
         run: docker-compose up -d
       - name: Test
-        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5001/
+        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
