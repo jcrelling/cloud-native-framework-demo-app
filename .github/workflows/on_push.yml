@@ -17,13 +17,15 @@ jobs:
       - name: Lint with flake8
         run: |
           pip install flake8
-          flake8 . --output-file=python-flake8-error-report.txt
+          flake8 . --output-file=python-flake8-error-report.txt --exit-zero
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
         with:
           name: python-flake8-error-report
           path: python-flake8-error-report.txt
           retention-days: 5
+      - name: Exit if error file contains lines
+        run: exit $(wc -l python-flake8-error-report.txt | cut -d " " -f 1)
 
   running_docker_test:
     needs: running_python_test
