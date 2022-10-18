@@ -1,4 +1,6 @@
+"""Flask module."""
 from flask import Flask
+"""Redis module."""
 from redis import Redis
 
 app = Flask(__name__)
