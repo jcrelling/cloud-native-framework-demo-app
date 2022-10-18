@@ -1,10 +1,21 @@
 name: Docker Compose Actions Workflow
 on: push
 jobs:
-  test:
+  running_python_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Instaling Python lint
+        run: pip install pylint
+      - name: Executing Python lint
+        run: pylint app.py
+    
+  running_docker_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Build the stack
         run: docker-compose up -d
       - name: Test
