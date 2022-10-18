@@ -1,12 +1,12 @@
-# base image - nginx with tag "latest"
-FROM nginx:latest
+FROM python:2.7
 
-# Adding custom index.html
-ADD webpage/index.html /usr/share/nginx/html/
-ADD webpage/assets /usr/share/nginx/html/assets
+WORKDIR /app
 
-# Adding read permissions to custom index.html
-RUN chmod +r /usr/share/nginx/html/index.html
+ADD requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
 
-# 'nginx -g daemon off" will run as default command when any container is run that uses the image that was built using this Dockerfile"
-CMD ["nginx", "-g", "daemon off;"]
+ADD app.py /app/app.py
+
+EXPOSE 80
+
+CMD ["python", "app.py"]
