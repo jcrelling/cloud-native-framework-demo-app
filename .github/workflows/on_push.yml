@@ -9,7 +9,7 @@ jobs:
       - name: Instaling Python lint
         run: pip install pylint
       - name: Instaling app requirements
-        run: pip install requirements.txt
+        run: pip install -r requirements.txt
       - name: Executing Python lint
         run: pylint app.py
     
