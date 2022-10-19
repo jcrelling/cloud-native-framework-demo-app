@@ -1,7 +1,33 @@
-name: CI
+name: Test and deploy on minik8s
 on: push
 jobs:
-  job1:
+  running_python_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '2.7'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 . --output-file=python-flake8-error-report.txt --exit-zero
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-flake8-error-report
+          path: python-flake8-error-report.txt
+          retention-days: 5
+      - name: Exit if error file contains lines
+        run: exit $(wc -l python-flake8-error-report.txt | cut -d " " -f 1)
+
+  deploy_at_minik8s:
     runs-on: ubuntu-latest
     name: build example and deploy to minikube
     steps:
