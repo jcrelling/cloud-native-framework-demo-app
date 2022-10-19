@@ -25,4 +25,4 @@ jobs:
         minikube service list
         minikube service pyapp --url
         echo "------------------opening the service------------------"
-        curl $(minikube pyapp example --url)
+        curl $(minikube service pyapp --url)
