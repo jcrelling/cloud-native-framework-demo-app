@@ -24,7 +24,7 @@ kind: Service
 metadata:
     name: pyapp
 spec:
-    type: ClusterIP
+    type: NodePort
     selector:
         app: pyapplication
     ports:
