@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: build example and deploy to minikube
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
@@ -19,7 +19,7 @@ jobs:
         docker images        
     - name: Deploy to minikube
       run:
-        kubectl apply -f deploy-to-minikube.yaml
+        kubectl apply -f deployment.yaml
     - name: Test service URLs
       run: |
         minikube service list
