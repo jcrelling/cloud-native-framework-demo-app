@@ -28,6 +28,7 @@ jobs:
         run: exit $(wc -l python-flake8-error-report.txt | cut -d " " -f 1)
 
   deploy_at_minik8s:
+    needs: running_python_test
     runs-on: ubuntu-latest
     name: build example and deploy to minikube
     steps:
