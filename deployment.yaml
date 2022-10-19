@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: pyApp
+    name: pyapp
 spec:
     selector:
         matchLabels:
-            app: pyApplication
+            app: pyapplication
     replicas: 2
     template:
         metadata:
             labels:
-                app: pyApplication
+                app: pyapplication
         spec:
             containers:
-                - name: pyApplication
+                - name: pyapplication-server
                   imagePullPolicy: Never
                   image: local/example:latest
                   ports:
@@ -22,11 +22,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: pyApplication
+    name: pyapp
 spec:
     type: NodePort
     selector:
-        app: pyApplication
+        app: pyapplication
     ports:
         - port: 5000
           targetPort: 5000
