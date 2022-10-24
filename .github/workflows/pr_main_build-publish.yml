@@ -21,4 +21,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: jcrelling/CNFDemoPyApp:latest, jcrelling/CNFDemoPyApp:${{ github.sha }}
+          tags: jcrelling/cnfdemopyapp:latest, jcrelling/cnfdemopyapp:${{ github.sha }}
