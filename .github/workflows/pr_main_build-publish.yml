@@ -24,6 +24,7 @@ jobs:
           tags: jcrelling/cnfdemopyapp:latest, jcrelling/cnfdemopyapp:${{ github.sha }}
 
   change_deployment_file:
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout app definition repo

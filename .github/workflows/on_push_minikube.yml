@@ -2,7 +2,7 @@ name: Test and deploy on minik8s
 on: 
   push:
     branches: 
-      - 'devi'
+      - 'dev'
 jobs:
   running_python_test:
     runs-on: ubuntu-latest
