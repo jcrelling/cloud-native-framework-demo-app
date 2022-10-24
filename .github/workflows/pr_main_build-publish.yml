@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.EXTERNAL_TOKEN }}
       - name: Modify app definition
         run: |
-          old_sha=$((grep 'image:' app3.yml|awk -F: '{{ print $3 }}'))
+          old_sha=$(grep 'image:' app3.yml|awk -F: '{{ print $3 }}')
           sed -i "s/$old_sha/${{ github.sha }}/g" app3.yml
           cat app3.yml
       - name: Push modification
